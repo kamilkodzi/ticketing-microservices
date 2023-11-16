@@ -5,9 +5,9 @@ import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 
 import { currentUserRouter } from './routes/current-user';
-import { singinRouter } from './routes/singin';
-import { singoutRouter } from './routes/singout';
-import { singupRouter } from './routes/singup';
+import { singinRouter } from './routes/signin';
+import { singoutRouter } from './routes/signout';
+import { singupRouter } from './routes/signup';
 import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';
 
@@ -17,7 +17,7 @@ app.use(json());
 app.use(
     cookieSession({
         signed: false,
-        secure: true,
+        secure: process.env.NODE_ENV !== 'test',
     })
 );
 
