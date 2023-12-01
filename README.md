@@ -27,6 +27,13 @@ can redirect to this crazy url from ex. http:/ingress-nginx-srv
 
 ## Good to know commands:
 
-` kubectl get pods`
+### To fire up sheel inside some container:
+
+`kubectl get pods`
 
 `kubectl exec -it POD_NAME sh` to fire up shell inside container
+
+### To do not explicity pull submodules:
+
+recursive command: `git pull --recurse-submodules`
+to use just git pull go first with command: `git config submodule.recurse true`
