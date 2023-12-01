@@ -1,25 +1,25 @@
-import { useState } from "react";
-import useRequest from "../../hooks/use-request";
-import Router from "next/router";
+import { useState } from 'react'
+import useRequest from '../../hooks/use-request'
+import Router from 'next/router'
 
 const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const { doRequest, errors } = useRequest({
-    url: "/api/users/signup",
-    method: "post",
+    url: '/api/users/signup',
+    method: 'post',
     body: {
       email,
       password,
     },
     onSuccess: () => {
-      Router.push("/");
+      Router.push('/')
     },
-  });
+  })
   const onSubmit = async (event) => {
-    event.preventDefault();
-    await doRequest();
-  };
+    event.preventDefault()
+    await doRequest()
+  }
   return (
     <form onSubmit={onSubmit}>
       <h1>Signup</h1>
@@ -43,7 +43,7 @@ const Signup = () => {
       {errors}
       <button className="btn btn-primary">Sign Up</button>
     </form>
-  );
-};
+  )
+}
 
-export default Signup;
+export default Signup

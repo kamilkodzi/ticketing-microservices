@@ -1,20 +1,20 @@
-import axios from "axios";
+import axios from 'axios'
 
 const buildClient = ({ req }) => {
-  if (typeof window === "undefined") {
+  if (typeof window === 'undefined') {
     // We are on server
 
     return axios.create({
       baseURL:
-        "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local",
+        'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
       headers: req.headers,
-    });
+    })
   } else {
     // We are on browser
     return axios.create({
-      baseURL: "/",
-    });
+      baseURL: '/',
+    })
   }
-};
+}
 
-export default buildClient;
+export default buildClient
