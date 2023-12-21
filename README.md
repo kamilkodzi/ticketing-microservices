@@ -37,3 +37,7 @@ can redirect to this crazy url from ex. http:/ingress-nginx-srv
 
 recursive command: `git pull --recurse-submodules`
 to use just git pull go first with command: `git config submodule.recurse true`
+
+### Expose port from pod
+
+`kubectl port-forward POD_NAME 4222:4222`
