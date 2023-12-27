@@ -9,6 +9,8 @@ const start = async () => {
   if (!process.env.MONGO_URI) {
     throw new Error('JWT_KEY must be defined')
   }
+
+  
   try {
     await natsWrapper.connect('ticketing', 'kajhskjah', 'http://nats-srv:4222')
     natsWrapper.client.on('close', () => {
