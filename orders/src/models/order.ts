@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import { OrderStatus } from '@katicketing/common'
 import { TicketDoc } from './ticket'
 export { OrderStatus }
+// import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 
 interface OrderAttrs {
   userId: string
@@ -15,6 +16,7 @@ interface OrderDoc extends mongoose.Document {
   status: OrderStatus
   expiresAt: Date
   ticket: TicketDoc
+  version: number
 }
 
 interface OrderModel extends mongoose.Model<OrderDoc> {
