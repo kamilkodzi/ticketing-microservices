@@ -5,6 +5,7 @@ import {
   NotFoundError,
   requireAuth,
   NotAuthorizedError,
+  BadRequestError,
 } from '@katicketing/common'
 import { Ticket } from '../models/ticket'
 import { TicketCreatedPublisher } from '../events/publishers/ticket-created-publisher'
@@ -30,6 +31,9 @@ router.put(
     }
     if (ticket.userId !== req.currentUser?.id) {
       throw new NotAuthorizedError()
+    }
+    if (ticket.orderId) {
+      throw new BadRequestError('Cannot edit reserved ticket')
     }
 
     ticket.set({
