@@ -5,7 +5,7 @@ import { app } from '../app'
 import jwt from 'jsonwebtoken'
 
 declare global {
-  var signin: () => string[]
+  var signin: (id?: string) => string[]
 }
 
 jest.mock('../nats-wrapper')
@@ -36,10 +36,10 @@ afterAll(async () => {
   await mongoose.connection.close()
 })
 
-signin = () => {
+signin = (id?: string) => {
   // Build JWT payload {id, email}
   const payload = {
-    id: new mongoose.Types.ObjectId().toHexString(),
+    id: id ?? new mongoose.Types.ObjectId().toHexString(),
     email: 'test@test.pl',
   }
   // Create the JWT

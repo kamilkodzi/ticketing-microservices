@@ -1,10 +1,10 @@
-import express, { Request, Response } from 'express';
-import { body } from 'express-validator';
-import { User } from '../models/user';
-import { BadRequestError, validateRequest } from '@katicketing/common';
-import jwt from 'jsonwebtoken';
+import express, { Request, Response } from 'express'
+import { body } from 'express-validator'
+import { User } from '../models/user'
+import { BadRequestError, validateRequest } from '@katicketing/common'
+import jwt from 'jsonwebtoken'
 
-const router = express.Router();
+const router = express.Router()
 
 router.post(
   '/api/users/signup',
@@ -17,19 +17,19 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { email, password } = req.body;
+    const { email, password } = req.body
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email })
 
     if (existingUser) {
-      throw new BadRequestError('Email in use');
+      throw new BadRequestError('Email in use')
     }
 
     const user = User.build({
       email,
       password,
-    });
-    await user.save();
+    })
+    await user.save()
 
     // Generate JWT
     const userJWT = jwt.sign(
@@ -38,15 +38,15 @@ router.post(
         email: user.email,
       },
       process.env.JWT_KEY!
-    );
+    )
 
     // Store it on session object
     req.session = {
       jwt: userJWT,
-    };
+    }
 
-    res.status(201).send(user);
+    res.status(201).send(user)
   }
-);
+)
 
-export { router as singupRouter };
+export { router as singupRouter }
