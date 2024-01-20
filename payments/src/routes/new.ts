@@ -10,6 +10,7 @@ import {
 } from '@katicketing/common'
 
 import { Order } from '../models/order'
+import { stripe } from '../stripe'
 
 const router = express.Router()
 
@@ -33,7 +34,12 @@ router.post(
     if (order.status === OrderStatus.Canceled) {
       throw new BadRequestError('Cannot pay for an cancelled order')
     }
-    res.send({ sucess: true })
+    await stripe.charges.create({
+      currency: 'usd',
+      amount: order.price * 100,
+      source: token,
+    })
+    res.status(201).send({ sucess: true })
   }
 )
 
