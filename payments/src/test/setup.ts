@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
 import request from 'supertest'
@@ -14,6 +15,9 @@ let mongo: MongoMemoryServer | null
 
 beforeAll(async () => {
   process.env.JWT_KEY = 'asaasas'
+  if (!process.env.STRIPE_KEY) {
+    throw new Error('STRIPE_KEY must be defined as ')
+  }
   mongo = await MongoMemoryServer.create()
   const mongoUri = mongo.getUri()
 
