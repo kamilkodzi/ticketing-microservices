@@ -13,4 +13,5 @@ jobs:
         run: |
           touch .env
           echo STRAPI_KEY=${{ secrets.STRAPI_KEY }} >> .env
+      - run: ls
       - run: npm install && npm run test:ci
