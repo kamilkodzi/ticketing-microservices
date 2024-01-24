@@ -1,13 +1,12 @@
 name: tests-payments
 
-env:
-  STRAPI_KEY: TEST124
-  
 on:
   pull_request
 
 jobs:
   build:
+    env:
+      STRAPI_KEY: TEST124
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
