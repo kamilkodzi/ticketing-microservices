@@ -5,9 +5,13 @@ on:
 
 jobs:
   build:
-    env:
-      STRAPI_KEY: TEST124
+
     runs-on: ubuntu-latest
     steps:
+      - run: cd payments
+      - name: create env file
+        run: |
+          touch .env
+          echo STRAPI_KEY=TESTING >> .env
       - uses: actions/checkout@v2
-      - run: cd payments && npm install && npm run test:ci
+      - run: npm install && npm run test:ci
