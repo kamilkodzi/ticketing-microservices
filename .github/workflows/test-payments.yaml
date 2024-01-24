@@ -7,12 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: ls
-      - run: cd payments/
       - name: create env file
         run: |
+          cd payments/
           touch .env
           echo STRAPI_KEY=${{ secrets.STRAPI_KEY }} >> .env
-      - run: ls -a
-      - run: ls -a payments/
-      - run: npm install && npm run test:ci
+      - run: cd payments && npm install && npm run test:ci
