@@ -10,6 +10,6 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo STRAPI_KEY=${{ secrets.ENGINE_API_KEY }} >> .env
+          echo STRAPI_KEY=${{ secrets.STRAPI_KEY }} >> .env
       - uses: actions/checkout@v2
       - run: npm install && npm run test:ci
