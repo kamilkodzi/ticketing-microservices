@@ -1,17 +1,15 @@
 name: tests-payments
 
-on:
-  pull_request
+on: pull_request
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
       - run: cd payments
       - name: create env file
         run: |
           touch .env
-          echo STRAPI_KEY=TESTING >> .env
+          echo STRAPI_KEY=${{ secrets.ENGINE_API_KEY }} >> .env
       - uses: actions/checkout@v2
       - run: npm install && npm run test:ci
