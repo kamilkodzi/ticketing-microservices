@@ -11,5 +11,5 @@ jobs:
         run: |
           cd payments/
           touch .env
-          echo STRIPE_KEY=${{ secrets.STRAPI_KEY }} >> .env
+          echo STRIPE_KEY=${{ secrets.STRIPE_KEY }} >> .env
       - run: cd payments && npm install && npm run test:ci
