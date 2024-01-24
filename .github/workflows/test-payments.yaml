@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: ls
-      - run: cd payments
+      - run: cd payments/
       - name: create env file
         run: |
           touch .env
