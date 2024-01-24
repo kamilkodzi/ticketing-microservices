@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: test
     env:
-      STRAPI_KEY: ${{ secrets.STRAPI_KEY }}
+      STRAPI_KEY: testasdasd22lj3
     steps:
       - uses: actions/checkout@v2
       - run: cd payments && npm install && npm run test:ci
