@@ -1,5 +1,8 @@
 name: tests-payments
 
+env:
+  STRAPI_KEY: TEST124
+  
 on:
   pull_request
 
@@ -7,8 +10,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Assign env variables
-        env:
-          STRAPI_KEY: TEST124
       - uses: actions/checkout@v2
       - run: cd payments && npm install && npm run test:ci
